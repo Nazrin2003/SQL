@@ -35,6 +35,42 @@ SQL> DESC support82;
  DEPT_ID							NUMBER(38)
  STATUS 							VARCHAR2(3)
 
+
+SQL> ALTER TABLE employee82 ADD emp_email VARCHAR(100);
+
+Table altered.
+SQL> DESC employee82;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID 				   NOT NULL NUMBER(38)
+ EMP_NAME					    VARCHAR2(100)
+ EMP_SALARY					    NUMBER(10,2)
+ EMP_JOIN_DATE					    DATE
+ DEPT_ID					    NUMBER(38)
+ EMP_EMAIL					    VARCHAR2(100)
+
+
+
+SQL> ALTER TABLE employee82 MODIFY emp_salary DECIMAL(12,2);
+
+Table altered.
+
+SQL> DESC employee82;
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID 				   NOT NULL NUMBER(38)
+ EMP_NAME					    VARCHAR2(100)
+ EMP_SALARY					    NUMBER(12,2)
+ EMP_JOIN_DATE					    DATE
+ DEPT_ID					    NUMBER(38)
+ EMP_EMAIL					    VARCHAR2(100)
+
+
+SQL> DROP TABLE support82;
+
+Table dropped.
+
+
 SQL> select * from department82;
 
 DEPT_ID | DEPT_NAME	       | DEPT_LOCATION
