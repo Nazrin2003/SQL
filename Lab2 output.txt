@@ -1,3 +1,15 @@
+SQL> CREATE TABLE department82(dept_id INT PRIMARY KEY,dept_name VARCHAR(100) NOT NULL,dept_location VARCHAR(100));
+
+Table created.
+
+SQL> CREATE TABLE employee82(emp_id INT PRIMARY KEY,emp_name VARCHAR(100),emp_salary NUMERIC(10,2) CHECK (emp_salary>20000),emp_join_date DATE CHECK (emp_join_date>=DATE'1998-06-01'),dept_id INT,FOREIGN KEY (dept_id) REFERENCES department82(dept_id));
+
+Table created.
+
+SQL> CREATE TABLE support82(s_id INT PRIMARY KEY,emp_id INT,dept_id INT,status VARCHAR(3) CHECK(status in('Yes','No')),FOREIGN KEY (emp_id) REFERENCES employee82 (emp_id),FOREIGN KEY (dept_id) REFERENCES department82 (dept_id));
+
+Table created.
+
 SQL> DESC employee82;
  Name						       Null?	Type
  ----------------------------------------------------- -------- ------------------------------------
@@ -15,7 +27,6 @@ SQL> DESC department82;
  DEPT_NAME					       NOT NULL VARCHAR2(100)
  DEPT_LOCATION							VARCHAR2(100)
 
-
 SQL> DESC support82;
  Name						       Null?	Type
  ----------------------------------------------------- -------- ------------------------------------
@@ -23,7 +34,6 @@ SQL> DESC support82;
  EMP_ID 							NUMBER(38)
  DEPT_ID							NUMBER(38)
  STATUS 							VARCHAR2(3)
-
 
 SQL> select * from department82;
 
@@ -51,7 +61,6 @@ EMP_ID | EMP_NAME	      | EMP_SALARY | EMP_JOIN_D | DEPT_ID | EMP_EMAIL
      3 | Johny M	      |      40000 | 18-SEP-21	|     101 | johnny@gmail.com
      4 | Ken Hobbs	      |      70000 | 25-OCT-21	|     176 | kenhobbs@gmail.com
 
-
 SQL> SELECT * FROM employee82;
 
 EMP_ID | EMP_NAME	      | EMP_SALARY | EMP_JOIN_D | DEPT_ID | EMP_EMAIL
@@ -60,7 +69,6 @@ EMP_ID | EMP_NAME	      | EMP_SALARY | EMP_JOIN_D | DEPT_ID | EMP_EMAIL
      2 | Ann Joy	      |      60000 | 16-MAY-21	|     159 | annjoy@gmail.com
      3 | Johny M	      |      40000 | 18-SEP-21	|     101 | johnny@gmail.com
      4 | Ken Hobbs	      |      70000 | 25-OCT-21	|     176 | kenhobbs@gmail.com
-
 
 SQL> DELETE FROM employee82 WHERE emp_id = 1;
 
@@ -73,8 +81,6 @@ EMP_ID | EMP_NAME	      | EMP_SALARY | EMP_JOIN_D | DEPT_ID | EMP_EMAIL
      2 | Ann Joy	      |      60000 | 16-MAY-21	|     159 | annjoy@gmail.com
      3 | Johny M	      |      40000 | 18-SEP-21	|     101 | johnny@gmail.com
      4 | Ken Hobbs	      |      70000 | 25-OCT-21	|     176 | kenhobbs@gmail.com
-
-
 
 SQL> UPDATE employee82 SET emp_salary = emp_salary*1.10 WHERE dept_id = 101 AND emp_salary < 50000;
 
