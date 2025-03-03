@@ -15,6 +15,7 @@ DROP TABLE support82;
 ALTER TABLE employee82 MODIFY emp_salary DECIMAL(12,2);
 
 
+
 INSERT INTO department82(dept_id,dept_name,dept_location)VALUES(101,'MCA','North Block');
 INSERT INTO department82 VALUES(159,'CS','South Block');
 INSERT INTO department82 VALUES(176,'Electronics','Decimal Block');
