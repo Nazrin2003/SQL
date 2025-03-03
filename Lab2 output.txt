@@ -15,6 +15,7 @@ SQL> DESC department82;
  DEPT_NAME					       NOT NULL VARCHAR2(100)
  DEPT_LOCATION							VARCHAR2(100)
 
+
 SQL> DESC support82;
  Name						       Null?	Type
  ----------------------------------------------------- -------- ------------------------------------
@@ -22,6 +23,7 @@ SQL> DESC support82;
  EMP_ID 							NUMBER(38)
  DEPT_ID							NUMBER(38)
  STATUS 							VARCHAR2(3)
+
 
 SQL> select * from department82;
 
@@ -49,6 +51,7 @@ EMP_ID | EMP_NAME	      | EMP_SALARY | EMP_JOIN_D | DEPT_ID | EMP_EMAIL
      3 | Johny M	      |      40000 | 18-SEP-21	|     101 | johnny@gmail.com
      4 | Ken Hobbs	      |      70000 | 25-OCT-21	|     176 | kenhobbs@gmail.com
 
+
 SQL> SELECT * FROM employee82;
 
 EMP_ID | EMP_NAME	      | EMP_SALARY | EMP_JOIN_D | DEPT_ID | EMP_EMAIL
@@ -57,6 +60,7 @@ EMP_ID | EMP_NAME	      | EMP_SALARY | EMP_JOIN_D | DEPT_ID | EMP_EMAIL
      2 | Ann Joy	      |      60000 | 16-MAY-21	|     159 | annjoy@gmail.com
      3 | Johny M	      |      40000 | 18-SEP-21	|     101 | johnny@gmail.com
      4 | Ken Hobbs	      |      70000 | 25-OCT-21	|     176 | kenhobbs@gmail.com
+
 
 SQL> DELETE FROM employee82 WHERE emp_id = 1;
 
@@ -69,6 +73,8 @@ EMP_ID | EMP_NAME	      | EMP_SALARY | EMP_JOIN_D | DEPT_ID | EMP_EMAIL
      2 | Ann Joy	      |      60000 | 16-MAY-21	|     159 | annjoy@gmail.com
      3 | Johny M	      |      40000 | 18-SEP-21	|     101 | johnny@gmail.com
      4 | Ken Hobbs	      |      70000 | 25-OCT-21	|     176 | kenhobbs@gmail.com
+
+
 
 SQL> UPDATE employee82 SET emp_salary = emp_salary*1.10 WHERE dept_id = 101 AND emp_salary < 50000;
 
