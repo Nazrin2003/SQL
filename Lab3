@@ -9,3 +9,6 @@ SELECT emp_name,emp_salary FROM employee82 WHERE emp_join_date > TO_DATE('01-01-
 SELECT * FROM employee82 WHERE emp_name LIKE 'J%';
 
 SELECT emp_name, emp_salary FROM employee82 WHERE emp_salary BETWEEN 40000 AND 60000;
+
+UPDATE employee82 SET dept_id=101 WHERE emp_id=3;
+SELECT dept_id,sum(emp_salary) AS total_salary FROM employee82 GROUP BY dept_id;

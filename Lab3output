@@ -53,7 +53,13 @@ Johny M                44000.00
 
 -- Q20: Write a query that groups employees by dept_id and shows the total salary per
 -- department.
+SQL> SELECT dept_id,sum(emp_salary) AS total_salary FROM employee82 GROUP BY dept_id;
 
+DEPT_ID TOTAL_SALARY
+------- ------------
+    159        60000
+    101        44000
+    176        70000
 
 -- Q21: Retrieve the department-wise average salary, but only for those departments with an
 -- average salary above 60000.
