@@ -1,0 +1,62 @@
+-- Q14: Write a SELECT query to list all employees with their emp_id, emp_name, and
+-- emp_salary.
+SQL> SELECT emp_id,emp_name,emp_salary FROM employee82;
+
+EMP_ID EMP_NAME             EMP_SALARY
+------ -------------------- ----------
+     2 Ann Joy                60000.00
+     3 Johny M                44000.00
+     4 Ken Hobbs              70000.00
+
+-- Q15: Retrieve the emp_name, emp_salary, and emp_join_date for employees whose
+-- salary is greater than 50000.
+SQL> SELECT emp_name,emp_salary,emp_join_date FROM employee82 WHERE emp_salary >50000;
+
+EMP_NAME             EMP_SALARY EMP_JOIN_
+-------------------- ---------- ---------
+Ann Joy                60000.00 16-MAY-21
+Ken Hobbs              70000.00 25-OCT-21
+
+-- Q16: List employees in the employee table ordered by emp_salary in descending order.
+SQL> SELECT * FROM employee82 ORDER BY emp_salary DESC;
+
+EMP_ID EMP_NAME             EMP_SALARY EMP_JOIN_D DEPT_ID EMP_EMAIL
+------ -------------------- ---------- ---------- ------- ------------------------------
+     4 Ken Hobbs              70000.00 25-OCT-21      176 kenhobbs@gmail.com
+     2 Ann Joy                60000.00 16-MAY-21      159 annjoy@gmail.com
+     3 Johny M                44000.00 18-SEP-21      101 johnny@gmail.com
+
+-- Q17: Retrieve all employees' names and salaries who joined after 01-01-2020.
+SQL> SELECT emp_name,emp_salary FROM employee82 WHERE emp_join_date > TO_DATE('01-01-2021', 'DD-MM-YYYY');
+
+EMP_NAME             EMP_SALARY
+-------------------- ----------
+Ann Joy                60000.00
+Johny M                44000.00
+Ken Hobbs              70000.00
+
+-- Q18: Write a query to select all employees whose name starts with "J".
+SQL> SELECT * FROM employee82 WHERE emp_name LIKE 'J%';
+
+EMP_ID EMP_NAME             EMP_SALARY EMP_JOIN_D DEPT_ID EMP_EMAIL
+------ -------------------- ---------- ---------- ------- ------------------------------
+     3 Johny M                44000.00 18-SEP-21      101 johnny@gmail.com
+
+-- Q19: Select the emp_name and emp_salary for employees whose salary is between 40000
+-- and 60000.
+SQL> SELECT emp_name, emp_salary FROM employee82 WHERE emp_salary BETWEEN 40000 AND 60000;
+
+EMP_NAME             EMP_SALARY
+-------------------- ----------
+Ann Joy                60000.00
+Johny M                44000.00
+
+-- Q20: Write a query that groups employees by dept_id and shows the total salary per
+-- department.
+
+
+-- Q21: Retrieve the department-wise average salary, but only for those departments with an
+-- average salary above 60000.
+-- Q22: List the departments and the number of employees in each department who earn
+-- above 50000.
+-- Q23: Use HAVING to list departments that have more than 3 employees.

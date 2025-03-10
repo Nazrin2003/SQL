@@ -1,0 +1,11 @@
+SELECT emp_id,emp_name,emp_salary FROM employee82;
+
+SELECT emp_name,emp_salary,emp_join_date FROM employee82 WHERE emp_salary >50000;
+
+SELECT * FROM employee82 ORDER BY emp_salary DESC;
+
+SELECT emp_name,emp_salary FROM employee82 WHERE emp_join_date > TO_DATE('01-01-2021', 'DD-MM-YYYY');
+
+SELECT * FROM employee82 WHERE emp_name LIKE 'J%';
+
+SELECT emp_name, emp_salary FROM employee82 WHERE emp_salary BETWEEN 40000 AND 60000;
