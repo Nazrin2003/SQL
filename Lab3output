@@ -63,6 +63,88 @@ DEPT_ID TOTAL_SALARY
 
 -- Q21: Retrieve the department-wise average salary, but only for those departments with an
 -- average salary above 60000.
+SQL> SELECT dept_id,avg(emp_salary) AS Average_Salary FROM employee82 GROUP BY dept_id HAVING avg(emp_salary) > 60000;
+
+   DEPT_ID AVERAGE_SALARY
+---------- --------------
+       176          70000
+
 -- Q22: List the departments and the number of employees in each department who earn
 -- above 50000.
+SQL> SELECT d.dept_name,count(e.emp_id) AS Total_employees FROM department82 d JOIN employee82 e ON d.dept_id=e.dept_id WHERE e.emp_salary>50000 GROUP BY d.dept_name;
+
+DEPT_NAME            TOTAL_EMPLOYEES
+-------------------- ---------------
+Electronics                        1
+CS                                 1
+
 -- Q23: Use HAVING to list departments that have more than 3 employees.
+SQL> INSERT INTO employee82 VALUES (1, 'Clair Smith', 60000, TO_DATE('15-10-2021', 'DD-MM-YYYY'), 101,'clair@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO employee82 VALUES (5, 'Maya Hawks', 60000, TO_DATE('4-05-2021', 'DD-MM-YYYY'), 101,'maya@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO employee82 VALUES (6, 'Liya N', 60000, TO_DATE('15-05-2020', 'DD-MM-YYYY'), 101,'liya@gmail.com');
+
+1 row created.
+
+SQL> select * from employee82;
+
+Employee ID Employee Name        Employee Salary EMP_JOIN_ Department ID Employee Email
+----------- -------------------- --------------- --------- ------------- ------------------------------
+          1 Clair Smith                    60000 15-OCT-21           101 clair@gmail.com
+          2 Ann Joy                        60000 16-MAY-21           159 annjoy@gmail.com
+          3 Johny M                        44000 18-SEP-21           101 johnny@gmail.com
+          4 Ken Hobbs                      70000 25-OCT-21           176 kenhobbs@gmail.com
+          5 Maya Hawks                     60000 04-MAY-21           101 maya@gmail.com
+          6 Liya N                         60000 15-MAY-20           101 liya@gmail.com
+
+SQL> SELECT d.dept_name,count(e.emp_id) AS Total_employees FROM department82 d JOIN employee82 e ON d.dept_id=e.dept_id GROUP BY dept_name HAVING count(e.emp_id) >3;
+
+Department Name      TOTAL_EMPLOYEES
+-------------------- -------------
+MCA                              4
+
+-- Q24: Write a query to find the names of employees who have a salary greater than the
+-- average salary in their department.
+SQL> SELECT emp_name FROM employee82 e1 WHERE emp_salary >(SELECT avg(emp_salary) FROM employee82 e2 WHERE e2.dept_id=e1.dept_id);
+
+Employee Name
+--------------------
+Clair Smith
+Maya Hawks
+Liya N
+
+-- Q25: Select the emp_name and emp_salary of employees who are in departments that are
+-- located in 'Ernakulam'.
+SQL> INSERT INTO department82 VALUES(111,'Mech','Ernakulam');
+
+1 row created.
+SQL> INSERT INTO employee82 VALUES (7, 'Denise N', 55000, TO_DATE('15-05-2020', 'DD-MM-YYYY'), 111,'denise@gmail.com');
+
+1 row created.
+SQL> SELECT emp_name,emp_salary FROM employee82 WHERE dept_id =(SELECT dept_id FROM department82 WHERE dept_location='Ernakulam');
+
+Employee Name        Employee Salary
+-------------------- ---------------
+Denise N                       55000
+
+-- Q26: Find the emp_name of employees who earn more than the highest salary in department 102.
+SQL> INSERT INTO department82 VALUES (102, 'Research', 'Main Building');
+
+1 row created.
+SQL> INSERT INTO employee82 VALUES (8, 'Matt M', 55000, TO_DATE('18-04-2020', 'DD-MM-YYYY'), 102,'matt@gmail.com');
+
+1 row created.
+
+
+-- Q27: Write a query that returns the department name of the department with the highest
+-- total salary.
+
+
+-- Q28: Find the emp_id and emp_name of employees who are working in departments with
+-- less than 10 employees.
+

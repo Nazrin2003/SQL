@@ -12,3 +12,24 @@ SELECT emp_name, emp_salary FROM employee82 WHERE emp_salary BETWEEN 40000 AND 6
 
 UPDATE employee82 SET dept_id=101 WHERE emp_id=3;
 SELECT dept_id,sum(emp_salary) AS total_salary FROM employee82 GROUP BY dept_id;
+
+SELECT dept_id,avg(emp_salary) AS Average_Salary FROM employee82 GROUP BY dept_id HAVING avg(emp_salary) > 60000;
+
+SELECT d.dept_name,count(e.emp_id) AS Total_employees FROM department82 d JOIN employee82 e ON d.dept_id=e.dept_id WHERE e.emp_salary>50000 GROUP BY d.dept_name;
+
+INSERT INTO employee82 VALUES (1, 'Clair Smith', 60000, TO_DATE('15-10-2021', 'DD-MM-YYYY'), 101,'clair@gmail.com');
+INSERT INTO employee82 VALUES (5, 'Maya Hawks', 60000, TO_DATE('4-05-2021', 'DD-MM-YYYY'), 101,'maya@gmail.com');
+INSERT INTO employee82 VALUES (6, 'Liya N', 60000, TO_DATE('15-05-2020', 'DD-MM-YYYY'), 101,'liya@gmail.com');
+
+SELECT d.dept_name,count(e.emp_id) AS num_employees FROM department82 d JOIN employee82 e ON d.dept_id=e.dept_id GROUP BY dept_name HAVING count(e.emp_id) >3;
+
+
+SELECT emp_name FROM employee82  WHERE emp_salary >(SELECT avg(emp_salary) FROM employee82 );
+
+INSERT INTO department82 VALUES(111,'Mech','Ernakulam');
+INSERT INTO employee82 VALUES (7, 'Denise N', 55000, TO_DATE('15-05-2020', 'DD-MM-YYYY'), 111,'denise@gmail.com');
+SELECT emp_name,emp_salary FROM employee82 WHERE dept_id =(SELECT dept_id FROM department82 WHERE dept_location='Ernakulam');
+
+INSERT INTO department82 VALUES (102, 'Research', 'Main Building');
+INSERT INTO employee82 VALUES (8, 'Matt M', 55000, TO_DATE('18-04-2020', 'DD-MM-YYYY'), 102,'matt@gmail.com');
+SELECT emp_name FROM employee82 WHERE emp_salary >(SELECT max(emp_salary) FROM employee82 WHERE dept_id='102');
