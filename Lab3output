@@ -143,8 +143,27 @@ SQL> INSERT INTO employee82 VALUES (8, 'Matt M', 55000, TO_DATE('18-04-2020', 'D
 
 -- Q27: Write a query that returns the department name of the department with the highest
 -- total salary.
+SQL> SELECT dept_name FROM department82 WHERE dept_id = (SELECT dept_id FROM employee82 GROUP BY dept_id HAVING SUM(emp_salary) = (SELECT MAX(SUM(emp_salary)) FROM employee82 GROUP BY dept_id));
 
+DEPT_NAME
+----------------------------------------------------------------------------------------------------
+MCA
 
 -- Q28: Find the emp_id and emp_name of employees who are working in departments with
 -- less than 10 employees.
+
+SQL> select emp_id,emp_name from employee82 where dept_id in(select dept_id from employee82 group by dept_id having count(emp_id)<10);
+
+    EMP_ID EMP_NAME
+---------- ----------------------------------------------------------------------------------------------------
+         2 Ann Joy
+         1 Clair Smith
+         3 Johny M
+         5 Maya Hawks
+         6 Liya N
+         7 Denise N
+         4 Ken Hobbs
+         8 Matt M
+
+8 rows selected.
 

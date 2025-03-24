@@ -1,0 +1,125 @@
+select * from department82;
+.....................................................................................................................
+-- 5. View Questions
+------------------------
+-- Q29: Create a VIEW high_salary_employees that lists the emp_name and emp_salary of
+-- employees who earn above 70000.
+
+SQL> INSERT INTO employee82 VALUES(9,'Niya',85000,TO_DATE('2022-08-05', 'YYYY-MM-DD'), 102, 'nithya@gmail.com');
+
+1 row created.
+SQL> INSERT INTO employee82 VALUES(15,'Jayan',72500,TO_DATE('2018-08-05', 'YYYY-MM-DD'), 101, 'Jayaan@gmail.com');
+
+1 row created.
+SQL> INSERT INTO employee82 VALUES(12,'Neha',78000,TO_DATE('2022-08-08', 'YYYY-MM-DD'), 102, 'neha@gmail.com');
+
+1 row created.
+
+SQL> CREATE VIEW high_salary_employee82 AS SELECT emp_name,emp_salary FROM employee82 WHERE emp_salary > 70000;         
+
+View created.
+
+SQL> SELECT * FROM high_salary_employee82;
+
+EMP_NAME                       EMP_SALARY
+------------------------------ ----------
+Niya                                85000
+Neha                                78000
+Jayan                               72500
+
+-- Q30: Write a query to VIEW the data FROM the high_salary_employees VIEW.
+
+SQL> SELECT * FROM high_salary_employee82;
+
+EMP_NAME                       EMP_SALARY
+------------------------------ ----------
+Niya                                85000
+Neha                                78000
+Jayan                               72500
+
+
+-- Q31: Create a VIEW to list employees along with the department name and their salary,
+-- filtering out employees earning below 50000.
+
+SQL> INSERT INTO employee82 VALUES(16,'Sree',45000,TO_DATE('2023-08-05', 'YYYY-MM-DD'), 111, 'Sree@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO employee82 VALUES(17,'Isha',35000,TO_DATE('2023-09-05', 'YYYY-MM-DD'), 111, 'ishu@gmail.com');
+
+1 row created.
+
+SQL> CREATE VIEW employe82 AS SELECT e.emp_name,d.dept_name,e.emp_salary FROM employee82 e,department82 d WHERE emp_salary < 50000 and e.dept_id=d.dept_id;
+
+View created.
+
+SSQL> SELECT * FROM employe82;
+
+EMP_NAME                       DEPT_NAME            EMP_SALARY
+------------------------------ -------------------- ----------
+Johny M                        MCA                       44000
+Sree                           Mech                      45000
+Isha                           Mech                      35000
+
+-- Q32: Drop the high_salary_employees VIEW.
+
+SQL> DROP VIEW high_salary_employee82;
+
+View dropped.
+
+SSQL> DESC high_salary_employee82;
+ERROR:
+ORA-04043: object high_salary_employee82 does not exist
+Help: https://docs.oracle.com/error-help/db/ora-04043/
+
+................................................................................................................
+-- 6. Aggregate Function Questions
+---------------------------------------
+-- Q33: Write a query to find the total salary paid in each department.
+
+SELECT d.dept_name,sum(e.emp_salary) AS total_salary FROM employee82 e JOIN department82 d WHERE e.dept_id=d.dept_id GROUP BY dept_id;
+
+SQL> SELECT dept_id,sum(emp_salary) AS total_salary FROM employee82 GROUP BY dept_id;
+
+DEPT_ID TOTAL_SALARY
+------- ------------
+    159        60000
+    101       296500
+    111       135000
+    176        70000
+    102       218000
+
+-- Q34: Use AVG() to find the average salary of employees in the 'Marketing' department.
+
+SQL> INSERT into department82 VALUES(106,'Marketing','Thrissur');
+
+1 row created.
+SQL> SELECT * FROM department82;
+
+DEPT_ID DEPT_NAME            DEPT_LOCATION
+------- -------------------- --------------------
+    176 Electronics          Decimal Block
+    158 Civil                North Block
+    101 MCA                  North Block
+    159 CS                   South Block
+    108 MBA                  South Block
+    111 Mech                 Ernakulam
+    102 Research             Main Building
+    106 Marketing            Thrissur
+
+8 rows selected.
+
+SELECT dept_id,avg(emp_salary) AS average_salary FROM employee82 WHERE dept_id =(SELECT dept_id FROM department82 WHERE dept_name="Marketing"); 
+
+-- Q35: Find the employee with the highest salary in each department using MAX().
+
+SELECT dept_id,max(emp_salary) AS maximum_salary FROM employee82 GROUP BY dept_id;
+
+-- Q36: Write a query that finds the total number of employees in each department.
+
+SELECT dept_id,count(*) AS total_employees FROM employee82 GROUP BY dept_id;
+
+-- Q37: Calculate the sum of the salaries of all employees whose emp_salary is greater than
+50000.
+
+SELECT sum(emp_salary) AS total_salary FROM employee82 WHERE emp_salary > 50000;

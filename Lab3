@@ -33,3 +33,8 @@ SELECT emp_name,emp_salary FROM employee82 WHERE dept_id =(SELECT dept_id FROM d
 INSERT INTO department82 VALUES (102, 'Research', 'Main Building');
 INSERT INTO employee82 VALUES (8, 'Matt M', 55000, TO_DATE('18-04-2020', 'DD-MM-YYYY'), 102,'matt@gmail.com');
 SELECT emp_name FROM employee82 WHERE emp_salary >(SELECT max(emp_salary) FROM employee82 WHERE dept_id='102');
+
+
+SELECT dept_name FROM department82 WHERE dept_id = (SELECT dept_id FROM employee82 GROUP BY dept_id HAVING SUM(emp_salary) = (SELECT MAX(SUM(emp_salary)) FROM employee82 GROUP BY dept_id));
+
+select emp_id,emp_name from employee82 where dept_id in(select dept_id from employee82 group by dept_id having count(emp_id)<10);
