@@ -1,0 +1,177 @@
+--  ------------------------------------------------------------------------------------------------ 
+-- 7. Join Questions
+-- -------------------------------------------------------------------------------------------------
+-- Q38: Write an INNER JOIN query to list employee names and their corresponding
+-- department names. 
+INSERT INTO employee82 VALUES(19,'Latha',48000,TO_DATE('2023-08-05', 'YYYY-MM-DD'), 106, 'latha@gmail.com');
+
+SQL> SELECT e.emp_name, d.dept_name FROM employee82 e INNER JOIN department82 d ON e.dept_id = d.dept_id;
+
+EMP_NAME             DEPT_NAME
+-------------------- --------------------
+Latha                Marketing
+Nihad                Marketing
+Clair Smith          MCA
+Ann Joy              CS
+Johny M              MCA
+Ken Hobbs            Electronics
+Maya Hawks           MCA
+Liya N               MCA
+Matt M               Research
+Denise N             Mech
+Niya                 Research
+Neha                 Research
+Jayan                MCA
+Sree                 Mech
+Isha                 Mech
+
+15 rows selected.
+
+-- Q39: Use a LEFT JOIN to list all employees and their department names, including those
+-- who do not belong to any department.
+SQL> INSERT INTO employee82 VALUES(21,'Mavis',56000,TO_DATE('2023-08-05', 'YYYY-MM-DD'), NULL, 'mav@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO employee82 VALUES(22,'Levi',55000,TO_DATE('2024-08-05', 'YYYY-MM-DD'), NULL, 'levi@gmail.com');
+
+1 row created.
+
+SQL> SELECT e.emp_name, d.dept_name FROM employee82 e LEFT JOIN department82 d ON e.dept_id = d.dept_id;
+
+EMP_NAME             DEPT_NAME
+-------------------- --------------------
+Ken Hobbs            Electronics
+Clair Smith          MCA
+Johny M              MCA
+Maya Hawks           MCA
+Liya N               MCA
+Jayan                MCA
+Ann Joy              CS
+Denise N             Mech
+Sree                 Mech
+Isha                 Mech
+Matt M               Research
+Niya                 Research
+Neha                 Research
+Latha                Marketing
+Nihad                Marketing
+Mavis
+Levi
+
+17 rows selected.
+
+-- Q40: Write a RIGHT JOIN to list all departments and their corresponding employees,
+-- including departments with no employees.
+SQL> SELECT e.emp_name, d.dept_name FROM employee82 e RIGHT JOIN department82 d ON e.dept_id = d.dept_id;
+
+EMP_NAME             DEPT_NAME
+-------------------- --------------------
+Latha                Marketing
+Nihad                Marketing
+Clair Smith          MCA
+Ann Joy              CS
+Johny M              MCA
+Ken Hobbs            Electronics
+Maya Hawks           MCA
+Liya N               MCA
+Matt M               Research
+Denise N             Mech
+Niya                 Research
+Neha                 Research
+Jayan                MCA
+Sree                 Mech
+Isha                 Mech
+                     Civil
+                     MBA
+
+17 rows selected.
+
+-- Q41: Use an OUTER JOIN to list all employees and their department names, showing NULL
+-- if there is no corresponding department.
+SQL> SELECT e.emp_name, d.dept_name FROM employee82 e FULL OUTER JOIN department82 d ON e.dept_id = d.dept_id;
+
+EMP_NAME             DEPT_NAME
+-------------------- --------------------
+Latha                Marketing
+Nihad                Marketing
+Mavis
+Levi
+Clair Smith          MCA
+Ann Joy              CS
+Johny M              MCA
+Ken Hobbs            Electronics
+Maya Hawks           MCA
+Liya N               MCA
+Matt M               Research
+Denise N             Mech
+Niya                 Research
+Neha                 Research
+Jayan                MCA
+Sree                 Mech
+Isha                 Mech
+                     Civil
+                     MBA
+
+-- ----------------------------------------------------------------------------------------------
+-- 8. Arithmetic and String Operation Questions
+-- ----------------------------------------------------------------------------------------------
+-- Q42: Write a query to increase the salary of all employees by 5000.
+-- Q43: Use arithmetic operations to find the new salary for employees after a 10% bonus.
+-- Q44: Use the CONCAT() function to display department names followed by its location.
+-- Q45: Write a query to extract the first 3 letters of the employee name.
+-- Q46: Use LENGTH() to find the number of characters in the employee's name.
+-- Q47: Use UPPER() to convert the employee's name to uppercase.
+-- --------------------------------------------------------------------------------------------------------
+-- 9. Set Operations Questions
+-- ---------------------------------------------------------------------------------------------------------
+-- Q48: Use UNION to combine the lists of employees who joined before 2010 and after
+-- 2018.
+SQL> SELECT emp_name FROM employee82 WHERE emp_join_date < TO_DATE('2010-01-01', 'YYYY-MM-DD') UNION SELECT emp_name FROM employee82 WHERE emp_join_date > TO_DATE('2018-12-31', 'YYYY-MM-DD');
+
+EMP_NAME
+--------------------
+Ann Joy
+Clair Smith
+Denise N
+Isha
+Johny M
+Ken Hobbs
+Latha
+Levi
+Liya N
+Matt M
+Mavis
+Maya Hawks
+Neha
+Nihad
+Niya
+Sree
+
+16 rows selected.
+
+-- Q49: Use INTERSECT to find employees who get salary in the range 40k-50k.
+SQL> SELECT emp_name FROM employee82 WHERE emp_salary >= 40000 AND emp_salary <= 50000 INTERSECT SELECT emp_name FROM employee82 WHERE emp_salary >= 40000 AND emp_salary <= 50000;
+
+EMP_NAME
+--------------------
+Johny M
+Latha
+Nihad
+Sree
+
+-- Q50: Use EXCEPT to list out the departments not in Ernakulam.
+
+SQL> SELECT dept_name FROM department82 MINUS SELECT dept_name FROM department82 WHERE dept_location = 'Ernakulam';
+
+DEPT_NAME
+--------------------
+CS
+Civil
+Electronics
+MBA
+MCA
+Marketing
+Research
+
+7 rows selected.
