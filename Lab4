@@ -64,7 +64,7 @@ SELECT dept_id,sum(emp_salary) AS total_salary FROM employee82 GROUP BY dept_id;
 -- Q34: Use AVG() to find the average salary of employees in the 'Marketing' department.
 
 INSERT into department82 VALUES(106,'Marketing','Thrissur');
-SQL> SELECT * FROM department82;
+SELECT * FROM department82;
 
    DEPT_ID DEPT_NAME                 DEPT_LOCATION
 ---------- ------------------------- -------------------------
@@ -74,8 +74,11 @@ SQL> SELECT * FROM department82;
        104 EEE                       NORTH BLOCK
        105 CIVIL                     NORTH BLOCK
        106 Marketing                 Thrissur
+INSERT INTO employee82 VALUES(19,'Latha',48000,TO_DATE('2023-08-05', 'YYYY-MM-DD'), 106, 'latha@gmail.com');
+INSERT INTO employee82 VALUES(20,'Nihad',49000,TO_DATE('2023-11-05', 'YYYY-MM-DD'), 106, 'nihad@gmail.com');
 
-SELECT dept_id,avg(emp_salary) AS average_salary FROM employee82 WHERE dept_id =(SELECT dept_id FROM department82 WHERE dept_name="Marketing"); 
+
+SELECT dept_id, AVG(emp_salary) AS average_salary FROM employee82 WHERE dept_id = (SELECT dept_id FROM department82 WHERE dept_name = 'Marketing') GROUP BY dept_id;
 
 -- Q35: Find the employee with the highest salary in each department using MAX().
 

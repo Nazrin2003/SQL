@@ -109,17 +109,56 @@ DEPT_ID DEPT_NAME            DEPT_LOCATION
 
 8 rows selected.
 
-SELECT dept_id,avg(emp_salary) AS average_salary FROM employee82 WHERE dept_id =(SELECT dept_id FROM department82 WHERE dept_name="Marketing"); 
+SQL> INSERT INTO employee82 VALUES(19,'Latha',48000,TO_DATE('2023-08-05', 'YYYY-MM-DD'), 106, 'latha@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO employee82 VALUES(20,'Nihad',49000,TO_DATE('2023-11-05', 'YYYY-MM-DD'), 106, 'nihad@gmail.com');
+
+1 row created.
+
+SQL> SELECT dept_id, AVG(emp_salary) AS average_salary FROM employee82 WHERE dept_id = (SELECT dept_id FROM department82 WHERE dept_name = 'Marketing') GROUP BY dept_id;
+
+DEPT_ID AVERAGE_SALARY
+------- --------------
+    106          48500
+
 
 -- Q35: Find the employee with the highest salary in each department using MAX().
 
-SELECT dept_id,max(emp_salary) AS maximum_salary FROM employee82 GROUP BY dept_id;
+SQL> SELECT dept_id,max(emp_salary) AS maximum_salary FROM employee82 GROUP BY dept_id;
+
+DEPT_ID MAXIMUM_SALARY
+------- --------------
+    159          60000
+    101          72500
+    111          55000
+    106          49000
+    176          70000
+    102          85000
+
+6 rows selected.
 
 -- Q36: Write a query that finds the total number of employees in each department.
 
-SELECT dept_id,count(*) AS total_employees FROM employee82 GROUP BY dept_id;
+SQL> SELECT dept_id,count(*) AS total_employees FROM employee82 GROUP BY dept_id;
+
+DEPT_ID TOTAL_EMPLOYEES
+------- ---------------
+    159               1
+    101               5
+    111               3
+    106               2
+    176               1
+    102               3
+
+6 rows selected.
 
 -- Q37: Calculate the sum of the salaries of all employees whose emp_salary is greater than
 50000.
 
-SELECT sum(emp_salary) AS total_salary FROM employee82 WHERE emp_salary > 50000;
+SQL> SELECT sum(emp_salary) AS total_salary FROM employee82 WHERE emp_salary > 50000;
+
+TOTAL_SALARY
+------------
+      655500
