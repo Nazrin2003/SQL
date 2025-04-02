@@ -26,6 +26,8 @@ SELECT e.emp_name, d.dept_name FROM employee82 e FULL OUTER JOIN department82 d 
 -- 8. Arithmetic and String Operation Questions
 -- ----------------------------------------------------------------------------------------------
 -- Q42: Write a query to increase the salary of all employees by 5000.
+UPDATE employee82 SET emp_salary = emp_salary + 5000;
+SELECT emp_name,emp_salary FROM employe82;
 -- Q43: Use arithmetic operations to find the new salary for employees after a 10% bonus.
 -- Q44: Use the CONCAT() function to display department names followed by its location.
 -- Q45: Write a query to extract the first 3 letters of the employee name.
