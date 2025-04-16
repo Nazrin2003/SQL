@@ -1,5 +1,6 @@
 
-1. Write a PL/SQL code to calculate total and percentage of marks of a student in four subjects.
+'1. Write a PL/SQL code to calculate total and percentage of marks of a student in four subjects.'
+set serveroutput on;
 declare
 rollno number;
 mark1 number;
@@ -14,10 +15,10 @@ mark1:=&mark1;
 mark2:=&mark2;
 mark3:=&mark3;
 mark4:=&mark4;
-end;
 total:=mark1+mark2+mark3+mark4;
-percentage:=total*0.25;
-dbms_output.put_line ('Student Marklist');
-dbms_output.put_line ('Total Mark = '|| total); dbms_output.put_line ('Percentage
-=
-'Il percentage);
+percentage:=(total/400)*100;
+dbms_output.put_line ('Student Marklist:');
+dbms_output.put_line ('Total Mark = '|| total); 
+dbms_output.put_line ('Percentage ='||percentage);
+end;
+/
