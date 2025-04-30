@@ -13,3 +13,15 @@ select Name,Salary from Instructor82;
 select Name,Salary/12 as monthly_salary from Instructor82;
 
 
+SET LINESIZE 120
+SET PAGESIZE 50
+
+COLUMN emp_id        FORMAT 99999
+COLUMN emp_name      FORMAT A20
+COLUMN emp_email     FORMAT A30
+COLUMN emp_salary    FORMAT 999999
+COLUMN emp_join_date FORMAT A15
+COLUMN dept_id       FORMAT 999
+
+SELECT emp_id, emp_name, emp_email, emp_salary, emp_join_date, dept_id
+FROM employee82;

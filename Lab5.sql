@@ -29,10 +29,15 @@ SELECT e.emp_name, d.dept_name FROM employee82 e FULL OUTER JOIN department82 d 
 UPDATE employee82 SET emp_salary = emp_salary + 5000;
 SELECT emp_name,emp_salary FROM employe82;
 -- Q43: Use arithmetic operations to find the new salary for employees after a 10% bonus.
+SELECT emp_id, emp_name,emp_salary,emp_salary * 1.10 AS new_salary FROM employee82;
 -- Q44: Use the CONCAT() function to display department names followed by its location.
+SELECT dept_name || ' - ' || dept_location AS dept_info FROM department82;
 -- Q45: Write a query to extract the first 3 letters of the employee name.
+SELECT SUBSTR(emp_name, 1, 3) AS emp_substring FROM employee82;
 -- Q46: Use LENGTH() to find the number of characters in the employee's name.
+SELECT emp_name, length(emp_name) AS name_length FROM employee82;
 -- Q47: Use UPPER() to convert the employee's name to uppercase.
+SELECT upper(emp_name) AS uppercase_name FROM employee82;
 -- --------------------------------------------------------------------------------------------------------
 -- 9. Set Operations Questions
 -- ---------------------------------------------------------------------------------------------------------
